@@ -16,6 +16,14 @@ import {
   mockHero, mockAbout, mockReefer, mockServices, mockProjects,
 } from './mock-data'
 
+// ── UUID helpers (Supabase id columns require valid UUID format) ──────────────
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+function isValidUUID(s: string | undefined): boolean {
+  return Boolean(s && UUID_RE.test(s))
+}
+
 // ── Supabase availability ─────────────────────────────────────────────────────
 
 function supabaseConfigured(): boolean {
@@ -276,37 +284,38 @@ export async function setServices(services: Service[]): Promise<void> {
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
+      // Delete all, then reinsert — avoids UUID type errors on non-UUID ids
+      await sb.from('services').delete().neq('id', '00000000-0000-0000-0000-000000000000')
       if (services.length > 0) {
-        const rows = services.map((s, i) => ({
-          id:               s.id,
-          number:           s.number,
-          icon:             s.icon,
-          title:            s.title,
-          slug:             s.slug,
-          description:      s.description      ?? '',
-          full_description: s.full_description ?? '',
-          features:         s.features         ?? [],
-          process:          s.process          ?? '',
-          starting_price:   s.starting_price   ?? '',
-          delivery_time:    s.delivery_time    ?? '',
-          cover_image:      s.cover_image      ?? '',
-          gallery:          s.gallery          ?? [],
-          active:           s.active,
-          order_index:      i,
-          updated_at:       new Date().toISOString(),
-        }))
-        // Upsert all current rows
-        const { error: upsertErr } = await sb.from('services').upsert(rows, { onConflict: 'id' })
-        if (upsertErr) { console.error('setServices upsert failed:', upsertErr.message); throw upsertErr }
-        // Remove rows that are no longer in the list
-        const currentIds = rows.map(r => r.id)
-        await sb.from('services').delete().not('id', 'in', `(${currentIds.join(',')})`)
-      } else {
-        await sb.from('services').delete().neq('id', '00000000-0000-0000-0000-000000000000')
+        const rows = services.map((s, i) => {
+          const row: Record<string, unknown> = {
+            number:           s.number,
+            icon:             s.icon,
+            title:            s.title,
+            slug:             s.slug,
+            description:      s.description      ?? '',
+            full_description: s.full_description ?? '',
+            features:         s.features         ?? [],
+            process:          s.process          ?? '',
+            starting_price:   s.starting_price   ?? '',
+            delivery_time:    s.delivery_time    ?? '',
+            cover_image:      s.cover_image      ?? '',
+            gallery:          s.gallery          ?? [],
+            active:           s.active,
+            order_index:      i,
+            updated_at:       new Date().toISOString(),
+          }
+          // Only include id if it's a valid UUID — otherwise Supabase auto-generates one
+          if (isValidUUID(s.id)) row.id = s.id
+          return row
+        })
+        const { error } = await sb.from('services').insert(rows)
+        if (error) { console.error('setServices insert failed:', error.message); throw error }
       }
       return
     } catch (err) {
       console.error('setServices failed:', err)
+      throw err
     }
   }
   await writeJsonFile('services.json', services)
@@ -371,33 +380,34 @@ export async function setProjects(projects: Project[]): Promise<void> {
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
+      await sb.from('projects').delete().neq('id', '00000000-0000-0000-0000-000000000000')
       if (projects.length > 0) {
-        const rows = projects.map((p, i) => ({
-          id:          p.id,
-          title:       p.title,
-          slug:        p.slug,
-          category:    p.category,
-          cover_image: p.cover_image ?? '',
-          gallery:     p.gallery     ?? [],
-          description: p.description ?? '',
-          location:    p.location    ?? '',
-          year:        p.year        ?? '',
-          client:      p.client      ?? '',
-          status:      p.status      ?? 'Completed',
-          featured:    p.featured,
-          order_index: i,
-          created_at:  p.created_at ?? new Date().toISOString(),
-        }))
-        const { error: upsertErr } = await sb.from('projects').upsert(rows, { onConflict: 'id' })
-        if (upsertErr) { console.error('setProjects upsert failed:', upsertErr.message); throw upsertErr }
-        const currentIds = rows.map(r => r.id)
-        await sb.from('projects').delete().not('id', 'in', `(${currentIds.join(',')})`)
-      } else {
-        await sb.from('projects').delete().neq('id', '00000000-0000-0000-0000-000000000000')
+        const rows = projects.map((p, i) => {
+          const row: Record<string, unknown> = {
+            title:       p.title,
+            slug:        p.slug,
+            category:    p.category,
+            cover_image: p.cover_image ?? '',
+            gallery:     p.gallery     ?? [],
+            description: p.description ?? '',
+            location:    p.location    ?? '',
+            year:        p.year        ?? '',
+            client:      p.client      ?? '',
+            status:      p.status      ?? 'Completed',
+            featured:    p.featured,
+            order_index: i,
+            created_at:  p.created_at ?? new Date().toISOString(),
+          }
+          if (isValidUUID(p.id)) row.id = p.id
+          return row
+        })
+        const { error } = await sb.from('projects').insert(rows)
+        if (error) { console.error('setProjects insert failed:', error.message); throw error }
       }
       return
     } catch (err) {
       console.error('setProjects failed:', err)
+      throw err
     }
   }
   await writeJsonFile('projects.json', projects)
@@ -474,24 +484,25 @@ export async function setCustomers(customers: Customer[]): Promise<void> {
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
+      await sb.from('customers').delete().neq('id', '00000000-0000-0000-0000-000000000000')
       if (customers.length > 0) {
-        const rows = customers.map((c, i) => ({
-          id:          c.id,
-          name:        c.name,
-          logo:        c.logo    ?? '',
-          featured:    c.featured,
-          order_index: i,
-        }))
-        const { error: upsertErr } = await sb.from('customers').upsert(rows, { onConflict: 'id' })
-        if (upsertErr) { console.error('setCustomers upsert failed:', upsertErr.message); throw upsertErr }
-        const currentIds = rows.map(r => r.id)
-        await sb.from('customers').delete().not('id', 'in', `(${currentIds.join(',')})`)
-      } else {
-        await sb.from('customers').delete().neq('id', '00000000-0000-0000-0000-000000000000')
+        const rows = customers.map((c, i) => {
+          const row: Record<string, unknown> = {
+            name:        c.name,
+            logo:        c.logo     ?? '',
+            featured:    c.featured ?? true,
+            order_index: i,
+          }
+          if (isValidUUID(c.id)) row.id = c.id
+          return row
+        })
+        const { error } = await sb.from('customers').insert(rows)
+        if (error) { console.error('setCustomers insert failed:', error.message); throw error }
       }
       return
     } catch (err) {
       console.error('setCustomers failed:', err)
+      throw err   // re-throw so the save route returns 500 with the real error
     }
   }
   await writeJsonFile('customers.json', customers)
