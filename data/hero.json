@@ -1,0 +1,62 @@
+{
+  "id": "mock-hero",
+  "headline_line1": "Built from",
+  "headline_line2": "Designed for you.",
+  "headline_accent": "steel.",
+  "subtext": "We transform shipping containers into bespoke offices, homes, storage units, and commercial spaces.",
+  "stat_years": "10+",
+  "stat_projects": "200+",
+  "stat_warranty": "1yr",
+  "image_url": "/uploads/e4699be7-ab8a-4887-89d9-3bdbc8fdb39f.jpg",
+  "slides": [
+    {
+      "id": "1782137151779",
+      "image_url": "/uploads/slides/slide-1782137150510.jpeg"
+    },
+    {
+      "id": "1718798400000",
+      "image_url": "/uploads/e4699be7-ab8a-4887-89d9-3bdbc8fdb39f.jpg"
+    },
+    {
+      "id": "1781879258898",
+      "image_url": "/uploads/slide-1781879258877.jpg"
+    },
+    {
+      "id": "1781950004050",
+      "image_url": "/uploads/slides/slide-1781950002901.jpeg"
+    },
+    {
+      "id": "1781950010781",
+      "image_url": "/uploads/slides/slide-1781950009799.jpeg"
+    },
+    {
+      "id": "1781950017156",
+      "image_url": "/uploads/slides/slide-1781950016027.jpeg"
+    },
+    {
+      "id": "1782137040453",
+      "image_url": "/uploads/slides/slide-1782137039241.jpeg"
+    },
+    {
+      "id": "1782137062466",
+      "image_url": "/uploads/slides/slide-1782137061261.jpeg"
+    },
+    {
+      "id": "1782137082227",
+      "image_url": "/uploads/slides/slide-1782137081123.jpeg"
+    },
+    {
+      "id": "1782137093373",
+      "image_url": "/uploads/slides/slide-1782137092289.jpeg"
+    },
+    {
+      "id": "1782137105630",
+      "image_url": "/uploads/slides/slide-1782137104472.jpeg"
+    },
+    {
+      "id": "1782137121535",
+      "image_url": "/uploads/slides/slide-1782137120369.jpeg"
+    }
+  ],
+  "updated_at": "2026-06-22T14:06:05.703Z"
+}

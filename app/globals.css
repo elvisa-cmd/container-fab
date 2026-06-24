@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --steel: #1A1F2E;
+  --rust: #C94C1A;
+  --rust-lt: #E05A22;
+  --concrete: #F0EDE8;
+  --mid-gray: #6B7280;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter), sans-serif;
+  background-color: #ffffff;
+  color: var(--steel);
+}
+
+/* ── Hero full-bleed animations ──────────────────────────────────────────── */
+@keyframes kenBurns {
+  0%   { transform: scale(1.0); }
+  100% { transform: scale(1.12); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroScrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--rust);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rust-lt);
+}
+
+/* Barlow Condensed display text */
+.font-display {
+  font-family: var(--font-barlow), sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Rust slash diagonal decoration */
+.rust-slash {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  background: var(--rust);
+  transform: skewX(-6deg);
+  z-index: 10;
+}
+
+/* Admin skeleton loader */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Toast slide-in */
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+.toast-enter {
+  animation: slideInRight 0.3s ease forwards;
+}
+
+/* ── Customer spotlight carousel ─────────────────────────────────────────── */
+@keyframes arrowPulse {
+  0%   { box-shadow: 0 0 0 0    rgba(201,76,26,0.8), 0 8px 32px rgba(201,76,26,0.5); }
+  70%  { box-shadow: 0 0 0 14px rgba(201,76,26,0),   0 8px 32px rgba(201,76,26,0.5); }
+  100% { box-shadow: 0 0 0 0    rgba(201,76,26,0),   0 8px 32px rgba(201,76,26,0.5); }
+}
+.arrow-pulse {
+  animation: arrowPulse 2s infinite;
+}
+
+/* Service card hover underline */
+.service-underline {
+  position: relative;
+}
+.service-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--rust);
+  transition: width 0.3s ease;
+}
+.service-underline:hover::after {
+  width: 100%;
+}

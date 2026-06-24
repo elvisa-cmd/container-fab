@@ -1,0 +1,100 @@
+[
+  {
+    "id": "1781904076462",
+    "order": 1,
+    "name": "DHL",
+    "logo": "/uploads/logos/logo-customer-1781904061282.png",
+    "featured": true
+  },
+  {
+    "id": "1781904210608",
+    "order": 2,
+    "name": "VIVO ENERGY",
+    "logo": "/uploads/logos/logo-vivo-energy-1781904206162.png",
+    "featured": true
+  },
+  {
+    "id": "1781931025641",
+    "order": 3,
+    "name": "TOTAL",
+    "logo": "/uploads/logos/logo-customer-1781931010377.png",
+    "featured": true
+  },
+  {
+    "id": "1781931472368",
+    "order": 4,
+    "name": "IEBC",
+    "logo": "/uploads/logos/logo-iebc-1781931466128.png",
+    "featured": true
+  },
+  {
+    "id": "1781931674346",
+    "order": 5,
+    "name": "SANYATI",
+    "logo": "/uploads/logos/logo-sanyati-1781931669027.jpg",
+    "featured": true
+  },
+  {
+    "id": "1781931932957",
+    "order": 6,
+    "name": "BHACHU",
+    "logo": "/uploads/logos/logo-bhachu-1781931929162.jpg",
+    "featured": true
+  },
+  {
+    "id": "1782125739267",
+    "order": 7,
+    "name": "Rubis",
+    "logo": "/uploads/logos/logo-rubis-1782125732729.png",
+    "featured": true
+  },
+  {
+    "id": "1782125910083",
+    "order": 8,
+    "name": "Aga Khan University Hospital",
+    "logo": "/uploads/logos/logo-aga-khan-university-hospital-1782125904774.png",
+    "featured": true
+  },
+  {
+    "id": "1782127530310",
+    "order": 9,
+    "name": "Ola Energy",
+    "logo": "/uploads/logos/logo-ola-energy-1782127527259.jpg",
+    "featured": true
+  },
+  {
+    "id": "1782127655334",
+    "order": 10,
+    "name": "FAO",
+    "logo": "/uploads/logos/logo-fao-1782127649385.jpg",
+    "featured": true
+  },
+  {
+    "id": "1782127742290",
+    "order": 11,
+    "name": "Limuru County Club",
+    "logo": "/uploads/logos/logo-limuru-country-club-1782127736777.png",
+    "featured": true
+  },
+  {
+    "id": "1782127831522",
+    "order": 12,
+    "name": "Cascade Institute of Hospitality",
+    "logo": "/uploads/logos/logo-cascade-institute-of-hospitali-1782127825663.png",
+    "featured": true
+  },
+  {
+    "id": "1782127955763",
+    "order": 13,
+    "name": "Bio-Logical Carbon Ltd",
+    "logo": "/uploads/logos/logo-bio-logical-carbon-ltd-1782127951553.jpg",
+    "featured": true
+  },
+  {
+    "id": "1782128157914",
+    "order": 14,
+    "name": "Hello Tractor",
+    "logo": "/uploads/logos/logo-hello-tractor-1782128153761.svg",
+    "featured": true
+  }
+]

@@ -1,0 +1,156 @@
+{
+  "hero": {
+    "id": "mock-hero",
+    "headline_line1": "Built from",
+    "headline_line2": "Designed for you.",
+    "headline_accent": "steel.",
+    "subtext": "We transform shipping containers into bespoke offices, homes, storage units, and commercial spaces.",
+    "stat_years": "10+",
+    "stat_projects": "200+",
+    "stat_warranty": "1yr",
+    "image_url": "/uploads/3f9d9fd7-cec7-452c-ad28-2cc198056bb3.jpg",
+    "updated_at": "2026-06-19T11:40:31.136Z"
+  },
+  "about": {
+    "id": "mock-about",
+    "heading": "BUILT ON STEEL. DRIVEN BY PURPOSE.",
+    "paragraph1": "Classic Container Fabricators Kenya was founded with a single mission: to deliver world-class container conversions that combine structural integrity with thoughtful design. From our Nairobi workshop, we serve clients across Kenya and East Africa.",
+    "paragraph2": "Every unit we build undergoes rigorous quality checks — from the structural welds to the finishing paint. We source only verified shipping containers and use premium materials to ensure each conversion stands the test of time and climate.",
+    "badge_number": "10+",
+    "badge_label": "Years of Excellence",
+    "image_url": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+    "pillar1_title": "Quality First",
+    "pillar1_text": "ISO-grade welding standards and certified materials on every build.",
+    "pillar2_title": "On-Time Delivery",
+    "pillar2_text": "We respect your timeline. Most builds complete in 4–8 weeks.",
+    "pillar3_title": "Custom Solutions",
+    "pillar3_text": "No two projects are the same. We design to your exact specifications.",
+    "updated_at": "2026-06-19T10:42:04.932Z"
+  },
+  "reefer": {
+    "id": "mock-reefer",
+    "heading": "REEFER CONTAINERS",
+    "subheading": "Cold Chain Solutions",
+    "description": "Our reefer container solutions provide reliable temperature-controlled environments for food storage, pharmaceutical logistics, and cold chain operations. We convert and maintain refrigerated containers to the highest standards.",
+    "feature1": "Temperature range: -25°C to +25°C",
+    "feature2": "Eutectic and mechanical refrigeration systems",
+    "feature3": "HACCP-compliant interior finishes",
+    "feature4": "Remote monitoring and alerting systems",
+    "image_url": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+    "updated_at": "2026-06-19T10:42:04.932Z"
+  },
+  "services": [
+    {
+      "id": "mock-svc-1",
+      "number": "01",
+      "icon": "🚢",
+      "title": "Used Shipping Containers",
+      "description": "We source, inspect, and certify grade-A used shipping containers — 20ft and 40ft — ready for conversion or direct sale across Kenya.",
+      "order_index": 0,
+      "active": true,
+      "updated_at": "2026-06-19T10:42:04.932Z"
+    },
+    {
+      "id": "mock-svc-2",
+      "number": "02",
+      "icon": "🏠",
+      "title": "Accommodation Units",
+      "description": "From single-room staff quarters to multi-unit residential complexes — we build container homes that are comfortable, durable, and affordable.",
+      "order_index": 1,
+      "active": true,
+      "updated_at": "2026-06-19T10:42:04.932Z"
+    },
+    {
+      "id": "mock-svc-3",
+      "number": "03",
+      "icon": "🏢",
+      "title": "Office Units",
+      "description": "Modern, climate-controlled office containers with full electrical, data cabling, and finishing — deployed on-site in days, not months.",
+      "order_index": 2,
+      "active": true,
+      "updated_at": "2026-06-19T10:42:04.932Z"
+    },
+    {
+      "id": "mock-svc-4",
+      "number": "04",
+      "icon": "🏪",
+      "title": "Commercial Spaces",
+      "description": "Pop-up shops, restaurants, clinics, and showrooms — we turn containers into vibrant commercial spaces that attract customers.",
+      "order_index": 3,
+      "active": true,
+      "updated_at": "2026-06-19T10:42:04.932Z"
+    },
+    {
+      "id": "mock-svc-5",
+      "number": "05",
+      "icon": "📦",
+      "title": "Storage Solutions",
+      "description": "Secure, weatherproof container storage units for construction sites, farms, warehouses, and logistics operations.",
+      "order_index": 4,
+      "active": true,
+      "updated_at": "2026-06-19T10:42:04.932Z"
+    },
+    {
+      "id": "mock-svc-6",
+      "number": "06",
+      "icon": "✏️",
+      "title": "Custom Design",
+      "description": "Have a unique vision? Our design team brings complex, multi-container builds to life — with architecture, engineering, and fabrication under one roof.",
+      "order_index": 5,
+      "active": true,
+      "updated_at": "2026-06-19T10:42:04.932Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": "mock-proj-1",
+      "title": "Nairobi Tech Hub",
+      "category": "Office Units",
+      "image_url": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+      "description": "A 4-container open-plan tech office for a Nairobi startup — featuring exposed steel ceilings, high-speed networking, and a rooftop deck.",
+      "featured": true,
+      "order_index": 0,
+      "created_at": "2026-06-19T10:42:04.932Z"
+    },
+    {
+      "id": "mock-proj-2",
+      "title": "Safari Camp Cabins",
+      "category": "Accommodation",
+      "image_url": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
+      "description": "6 luxury container cabins deployed at a Laikipia safari camp, with solar power, ensuite bathrooms, and panoramic views.",
+      "featured": true,
+      "order_index": 1,
+      "created_at": "2026-06-19T10:42:04.932Z"
+    },
+    {
+      "id": "mock-proj-3",
+      "title": "Westlands Coffee Shop",
+      "category": "Commercial",
+      "image_url": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&q=80",
+      "description": "A two-container café conversion in Westlands featuring floor-to-ceiling glass panels, custom wooden interiors, and a street-facing counter.",
+      "featured": true,
+      "order_index": 2,
+      "created_at": "2026-06-19T10:42:04.932Z"
+    },
+    {
+      "id": "mock-proj-4",
+      "title": "Site Office — SGR Extension",
+      "category": "Office Units",
+      "image_url": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+      "description": "12 portable site offices deployed along the SGR extension corridor — fully fitted with AC, data points, and sanitation facilities.",
+      "featured": true,
+      "order_index": 3,
+      "created_at": "2026-06-19T10:42:04.932Z"
+    },
+    {
+      "id": "mock-proj-5",
+      "title": "Kilimani Apartment Block",
+      "category": "Accommodation",
+      "image_url": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80",
+      "description": "A stacked 3-storey residential building using 8 containers — each unit with a private balcony, modern kitchen, and city views.",
+      "featured": true,
+      "order_index": 4,
+      "created_at": "2026-06-19T10:42:04.932Z"
+    }
+  ]
+}

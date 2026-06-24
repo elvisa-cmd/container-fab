@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70">
+  <!-- Background -->
+  <rect width="70" height="70" rx="2" fill="#111111"/>
+
+  <!-- Container body outline -->
+  <rect x="8" y="8" width="54" height="54" rx="2"
+        stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+
+  <!-- Top rail -->
+  <rect x="8" y="8" width="54" height="9" rx="1" fill="#C9A84C"/>
+
+  <!-- Bottom rail -->
+  <rect x="8" y="53" width="54" height="9" rx="1" fill="#C9A84C"/>
+
+  <!-- Corner castings (dark holes on gold rails) -->
+  <circle cx="13" cy="12"  r="2.5" fill="#111111"/>
+  <circle cx="57" cy="12"  r="2.5" fill="#111111"/>
+  <circle cx="13" cy="57"  r="2.5" fill="#111111"/>
+  <circle cx="57" cy="57"  r="2.5" fill="#111111"/>
+
+  <!-- Corrugation ribs -->
+  <line x1="20" y1="18" x2="20" y2="52" stroke="#C9A84C" stroke-width="1" stroke-opacity="0.3"/>
+  <line x1="30" y1="18" x2="30" y2="52" stroke="#C9A84C" stroke-width="1" stroke-opacity="0.3"/>
+  <line x1="40" y1="18" x2="40" y2="52" stroke="#C9A84C" stroke-width="1" stroke-opacity="0.3"/>
+  <line x1="50" y1="18" x2="50" y2="52" stroke="#C9A84C" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- CF lettering -->
+  <text x="35" y="36"
+        text-anchor="middle" dominant-baseline="middle"
+        fill="#FFFFFF" font-size="16" font-weight="700"
+        font-family="'Barlow Condensed',sans-serif" letter-spacing="1.5">CF</text>
+</svg>

@@ -1,0 +1,98 @@
+
+> classic-container-fabricators@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+  ▲ Next.js 14.2.15
+  - Local:        http://localhost:3001
+
+ ✓ Starting...
+ ✓ Ready in 5.8s
+ ⚠ Found a change in next.config.js. Restarting the server to apply the changes...
+▲ Next.js 16.2.9 (webpack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.4:3000
+✓ Ready in 0ms
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+
+○ Compiling / ...
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Elvis\OneDrive\Desktop\container_fab\.next\dev\required-server-files.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\Elvis\\OneDrive\\Desktop\\container_fab\\.next\\dev\\required-server-files.json',
+  page: '/'
+}
+ GET / 500 in 19.1s
+○ Compiling /_error ...
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Elvis\OneDrive\Desktop\container_fab\.next\dev\required-server-files.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\Elvis\\OneDrive\\Desktop\\container_fab\\.next\\dev\\required-server-files.json'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Elvis\OneDrive\Desktop\container_fab\.next\dev\required-server-files.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\Elvis\\OneDrive\\Desktop\\container_fab\\.next\\dev\\required-server-files.json',
+  page: '/'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Elvis\OneDrive\Desktop\container_fab\.next\dev\required-server-files.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\Elvis\\OneDrive\\Desktop\\container_fab\\.next\\dev\\required-server-files.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\Elvis\OneDrive\Desktop\container_fab\.next\dev\required-server-files.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\Elvis\\OneDrive\\Desktop\\container_fab\\.next\\dev\\required-server-files.json',
+  page: '/'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Elvis\OneDrive\Desktop\container_fab\.next\dev\required-server-files.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\Elvis\\OneDrive\\Desktop\\container_fab\\.next\\dev\\required-server-files.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\Elvis\OneDrive\Desktop\container_fab\.next\dev\required-server-files.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\Elvis\\OneDrive\\Desktop\\container_fab\\.next\\dev\\required-server-files.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\Elvis\OneDrive\Desktop\container_fab\.next\dev\required-server-files.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\Elvis\\OneDrive\\Desktop\\container_fab\\.next\\dev\\required-server-files.json',
+  page: '/'
+}
+⨯ Error: ENOENT: no such file or directory, open 'C:\Users\Elvis\OneDrive\Desktop\container_fab\.next\dev\required-server-files.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\Elvis\\OneDrive\\Desktop\\container_fab\\.next\\dev\\required-server-files.json'
+}
+Error: ENOENT: no such file or directory, open 'C:\Users\Elvis\OneDrive\Desktop\container_fab\.next\dev\required-server-files.json'
+    at ignore-listed frames {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\Elvis\\OneDrive\\Desktop\\container_fab\\.next\\dev\\required-server-files.json'
+}
+ GET / 500 in 5.9s
+ GET / 500 in 5.9s
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Elvis\OneDrive\Desktop\container_fab\.next\dev\cache\webpack\client-development-fallback\0.pack.gz_' -> 'C:\Users\Elvis\OneDrive\Desktop\container_fab\.next\dev\cache\webpack\client-development-fallback\0.pack.gz'
+[?25h
