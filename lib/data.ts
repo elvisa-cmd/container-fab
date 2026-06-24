@@ -571,15 +571,42 @@ export async function setMessages(messages: Message[]): Promise<void> {
   await writeJsonFile('messages.json', messages)
 }
 
+/** Map a Message to a Supabase-safe row (no nulls in NOT NULL columns) */
+function toMessageRow(msg: Message | Omit<Message, 'id' | 'created_at'>) {
+  return {
+    name:       (msg.name       || 'Visitor').trim(),
+    email:      (msg.email      || '').trim(),
+    phone:      (msg.phone      || '').trim(),
+    service:    (msg.service    || '').trim(),
+    message:    (msg.message    || '').trim(),
+    read:       msg.read        ?? false,
+    replied:    msg.replied     ?? false,
+    reply_text: msg.reply_text  ?? '',   // NOT NULL in schema — never pass null
+    replied_at: msg.replied_at  ?? null, // TIMESTAMPTZ — nullable
+  }
+}
+
+/**
+ * appendMessage — saves a full Message (id + created_at already set by caller).
+ * Used by legacy code paths.
+ */
 export async function appendMessage(msg: Message): Promise<void> {
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
-      const { error } = await sb.from('messages').insert({ ...msg, created_at: new Date().toISOString() })
-      if (error) console.error('appendMessage failed:', error.message)
-      else return
+      const row = {
+        id: ensureUUID(msg.id),
+        created_at: msg.created_at ?? new Date().toISOString(),
+        ...toMessageRow(msg),
+      }
+      const { error } = await sb.from('messages').insert(row)
+      if (error) {
+        console.error('[appendMessage] Supabase error:', error.message, error.details)
+      } else {
+        return
+      }
     } catch (err) {
-      console.error('appendMessage failed:', err)
+      console.error('[appendMessage] failed:', err)
     }
   }
   const list = await readJson<Message[]>('messages.json', [])
@@ -587,15 +614,59 @@ export async function appendMessage(msg: Message): Promise<void> {
   await writeJsonFile('messages.json', list)
 }
 
+/**
+ * addMessage — convenience wrapper that auto-generates id + created_at.
+ * Use this in API routes so callers don't build a full Message object.
+ */
+export async function addMessage(
+  msg: Omit<Message, 'id' | 'created_at'>,
+): Promise<void> {
+  if (supabaseConfigured()) {
+    try {
+      const sb = getServiceClient()
+      const row = {
+        id:         randomUUID(),
+        created_at: new Date().toISOString(),
+        ...toMessageRow(msg),
+      }
+      console.log('[addMessage] inserting:', row.name, '|', row.email, '|', row.service)
+      const { error } = await sb.from('messages').insert(row)
+      if (error) {
+        console.error('[addMessage] Supabase error:', error.message, error.details)
+        throw new Error(error.message)
+      }
+      return
+    } catch (err) {
+      console.error('[addMessage] failed:', err)
+      throw err
+    }
+  }
+  // Local fallback
+  const fullMsg: Message = {
+    id:         crypto.randomUUID(),
+    created_at: new Date().toISOString(),
+    ...msg,
+    reply_text: msg.reply_text ?? null,
+  }
+  const list = await readJson<Message[]>('messages.json', [])
+  list.push(fullMsg)
+  await writeJsonFile('messages.json', list)
+}
+
 export async function updateMessage(id: string, patch: Partial<Message>): Promise<Message | null> {
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
-      const { data, error } = await sb.from('messages').update(patch).eq('id', id).select().single()
-      if (error) { console.error('updateMessage failed:', error.message); return null }
+      // Ensure reply_text is never null (NOT NULL in Supabase schema)
+      const safePatch = {
+        ...patch,
+        reply_text: patch.reply_text ?? '',
+      }
+      const { data, error } = await sb.from('messages').update(safePatch).eq('id', id).select().single()
+      if (error) { console.error('[updateMessage] Supabase error:', error.message, error.details); return null }
       if (data) return data as unknown as Message
     } catch (err) {
-      console.error('updateMessage failed:', err)
+      console.error('[updateMessage] failed:', err)
     }
   }
   const list = await readJson<Message[]>('messages.json', [])
@@ -605,6 +676,9 @@ export async function updateMessage(id: string, patch: Partial<Message>): Promis
   await writeJsonFile('messages.json', list)
   return list[idx]
 }
+
+/** Alias so code that imports readMessages() still works */
+export const readMessages = getMessages
 
 // ═══════════════════════════════════════════════════════════════════════════
 // PAGE VIEWS
