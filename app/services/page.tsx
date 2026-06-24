@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
 import { getServices } from '@/lib/data'

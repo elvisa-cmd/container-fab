@@ -5,6 +5,7 @@
  * Fallback:        Local JSON files in /data/ (development without Supabase)
  */
 
+import { unstable_noStore as noStore } from 'next/cache'
 import fs from 'fs/promises'
 import path from 'path'
 import type {
@@ -122,6 +123,7 @@ async function seedIfEmpty(
 // ═══════════════════════════════════════════════════════════════════════════
 
 export async function getHero(): Promise<HeroContent> {
+  noStore()
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
@@ -169,6 +171,7 @@ export async function setHero(d: HeroContent): Promise<void> {
 // ═══════════════════════════════════════════════════════════════════════════
 
 export async function getAbout(): Promise<AboutContent> {
+  noStore()
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
@@ -201,6 +204,7 @@ export async function setAbout(d: AboutContent): Promise<void> {
 // ═══════════════════════════════════════════════════════════════════════════
 
 export async function getReefer(): Promise<ReeferContent> {
+  noStore()
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
@@ -254,6 +258,7 @@ function rowToService(row: Record<string, unknown>): Service {
 }
 
 export async function getServices(): Promise<Service[]> {
+  noStore()
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
@@ -308,6 +313,7 @@ export async function setServices(services: Service[]): Promise<void> {
 }
 
 export async function getServiceBySlug(slug: string): Promise<Service | null> {
+  noStore()
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
@@ -345,6 +351,7 @@ function rowToProject(row: Record<string, unknown>): Project {
 }
 
 export async function getProjects(): Promise<Project[]> {
+  noStore()
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
@@ -397,6 +404,7 @@ export async function setProjects(projects: Project[]): Promise<void> {
 }
 
 export async function readProjectBySlug(slug: string): Promise<Project | null> {
+  noStore()
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
@@ -440,6 +448,7 @@ export async function patchContent<K extends keyof ContentStore>(
 // ═══════════════════════════════════════════════════════════════════════════
 
 export async function getCustomers(): Promise<Customer[]> {
+  noStore()
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
@@ -493,6 +502,7 @@ export async function setCustomers(customers: Customer[]): Promise<void> {
 // ═══════════════════════════════════════════════════════════════════════════
 
 export async function readLocation(): Promise<LocationData> {
+  noStore()
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
@@ -525,6 +535,7 @@ export async function writeLocation(d: LocationData): Promise<void> {
 // ═══════════════════════════════════════════════════════════════════════════
 
 export async function getMessages(): Promise<Message[]> {
+  noStore()
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()
@@ -582,6 +593,7 @@ export async function updateMessage(id: string, patch: Partial<Message>): Promis
 // ═══════════════════════════════════════════════════════════════════════════
 
 export async function getPageViews(): Promise<PageView[]> {
+  noStore()
   if (supabaseConfigured()) {
     try {
       const sb = getServiceClient()

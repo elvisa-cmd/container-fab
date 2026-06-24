@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import { writeLocation, sessionSecret, SESSION_COOKIE } from '@/lib/data'
 import type { LocationData } from '@/types'
 
@@ -10,6 +11,10 @@ export async function POST(req: NextRequest) {
   try {
     const data = await req.json() as LocationData
     await writeLocation({ ...data, updated_at: new Date().toISOString() })
+
+    // Bust cache so public site shows fresh location immediately
+    revalidatePath('/', 'layout')
+
     return NextResponse.json({ success: true })
   } catch (err) {
     console.error('[save/location]', err)

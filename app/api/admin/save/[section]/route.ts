@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath } from 'next/cache'
 import {
   setHero, setAbout, setReefer, setServices, setProjects, setCustomers,
   sessionSecret, SESSION_COOKIE,
@@ -35,6 +36,12 @@ export async function POST(
   try {
     const data = await req.json()
     await saver(data)
+
+    // Bust Next.js cache so the public site shows fresh data immediately
+    revalidatePath('/', 'layout')
+    revalidatePath('/services')
+    revalidatePath('/projects')
+
     return NextResponse.json({ ok: true })
   } catch (err) {
     console.error(`[save/${section}] error:`, err)
