@@ -1,15 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { isAdminAuthed } from '@/lib/admin-auth'
 import {
   getHero, getAbout, getReefer, getServices, getProjects, getCustomers, readLocation,
-  patchContent, sessionSecret, SESSION_COOKIE,
+  patchContent,
 } from '@/lib/data'
 import type { ContentStore } from '@/lib/data'
 
-function authed(req: NextRequest) {
-  return req.cookies.get(SESSION_COOKIE)?.value === sessionSecret()
-}
-
-// Maps URL ?section= param → ContentStore key (handles aliases like 'reefers' → 'reefer')
 const SECTION_READERS: Record<string, () => Promise<unknown>> = {
   hero:      getHero,
   about:     getAbout,
@@ -27,7 +23,6 @@ export async function GET(req: NextRequest) {
   if (reader) {
     return NextResponse.json({ data: await reader() })
   }
-  // No section param → return all
   const [hero, about, reefer, services, projects] = await Promise.all([
     getHero(), getAbout(), getReefer(), getServices(), getProjects(),
   ])
@@ -35,18 +30,16 @@ export async function GET(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
-  if (!authed(req)) {
+  if (!(await isAdminAuthed())) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
   try {
     const { section, data } = await req.json()
-    if (!section) {
-      return NextResponse.json({ error: 'section is required' }, { status: 400 })
-    }
+    if (!section) return NextResponse.json({ error: 'section is required' }, { status: 400 })
     await patchContent(section as keyof ContentStore, data)
     return NextResponse.json({ ok: true })
   } catch (err) {
     console.error('content PUT error:', err)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json({ error: String(err) }, { status: 500 })
   }
 }

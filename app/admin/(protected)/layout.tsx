@@ -1,17 +1,14 @@
 import { redirect } from 'next/navigation'
-import { cookies } from 'next/headers'
-import { getMessages, adminEmail, sessionSecret, SESSION_COOKIE } from '@/lib/data'
+import { getMessages, adminEmail } from '@/lib/data'
+import { isAdminAuthed } from '@/lib/admin-auth'
 import Sidebar from '@/components/admin/Sidebar'
 import { ToastProvider } from '@/components/ui/Toast'
 
 export const dynamic = 'force-dynamic'
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-  const cookieStore = await cookies()
-  const session = cookieStore.get(SESSION_COOKIE)
-  if (session?.value !== sessionSecret()) {
-    redirect('/admin/login')
-  }
+  const authed = await isAdminAuthed()
+  if (!authed) redirect('/admin/login')
 
   const messages = await getMessages()
   const unreadCount = messages.filter((m) => !m.read).length

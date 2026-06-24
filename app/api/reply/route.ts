@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { updateMessage, sessionSecret, SESSION_COOKIE } from '@/lib/data'
+import { isAdminAuthed } from '@/lib/admin-auth'
+import { updateMessage } from '@/lib/data'
 
 export async function POST(req: NextRequest) {
-  if (req.cookies.get(SESSION_COOKIE)?.value !== sessionSecret()) {
+  if (!(await isAdminAuthed())) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -17,19 +18,16 @@ export async function POST(req: NextRequest) {
     }
 
     const updated = await updateMessage(messageId, {
-      replied: true,
+      replied:    true,
       reply_text: replyText.trim(),
       replied_at: new Date().toISOString(),
-      read: true,
+      read:       true,
     })
 
-    if (!updated) {
-      return NextResponse.json({ error: 'Message not found' }, { status: 404 })
-    }
-
+    if (!updated) return NextResponse.json({ error: 'Message not found' }, { status: 404 })
     return NextResponse.json({ message: updated })
   } catch (err) {
     console.error('Reply route error:', err)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json({ error: String(err) }, { status: 500 })
   }
 }

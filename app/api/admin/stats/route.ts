@@ -1,9 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { getMessages, getPageViews, sessionSecret, SESSION_COOKIE } from '@/lib/data'
+import { NextResponse } from 'next/server'
+import { isAdminAuthed } from '@/lib/admin-auth'
+import { getMessages, getPageViews } from '@/lib/data'
 import { startOfWeek, subWeeks } from 'date-fns'
 
-export async function GET(req: NextRequest) {
-  if (req.cookies.get(SESSION_COOKIE)?.value !== sessionSecret()) {
+export async function GET() {
+  if (!(await isAdminAuthed())) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 

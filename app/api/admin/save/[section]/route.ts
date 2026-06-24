@@ -1,13 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
+import { isAdminAuthed } from '@/lib/admin-auth'
 import {
   setHero, setAbout, setReefer, setServices, setProjects, setCustomers,
-  sessionSecret, SESSION_COOKIE,
 } from '@/lib/data'
-
-function authed(req: NextRequest) {
-  return req.cookies.get(SESSION_COOKIE)?.value === sessionSecret()
-}
 
 const SAVERS: Record<string, (data: unknown) => Promise<void>> = {
   hero:      (d) => setHero(d as Parameters<typeof setHero>[0]),
@@ -23,7 +19,7 @@ export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ section: string }> },
 ) {
-  if (!authed(req)) {
+  if (!(await isAdminAuthed())) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -36,15 +32,12 @@ export async function POST(
   try {
     const data = await req.json()
     await saver(data)
-
-    // Bust Next.js cache so the public site shows fresh data immediately
     revalidatePath('/', 'layout')
     revalidatePath('/services')
     revalidatePath('/projects')
-
     return NextResponse.json({ ok: true })
   } catch (err) {
     console.error(`[save/${section}] error:`, err)
-    return NextResponse.json({ error: 'Failed to save' }, { status: 500 })
+    return NextResponse.json({ error: String(err) }, { status: 500 })
   }
 }
