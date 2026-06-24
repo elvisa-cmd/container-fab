@@ -94,10 +94,17 @@ export default function ContactForm() {
 
             <div className="space-y-6">
               {[
-                { Icon: MapPin, label: 'Address',       value: 'National Park East Gate Rd, Nairobi, Kenya' },
-                { Icon: Phone, label: 'Phone / WhatsApp', value: '+254 715 296324 / +254 713 971 394' },
-                { Icon: Mail,  label: 'Email',          value: 'info@containerfabricators.co.ke' },
-              ].map(({ Icon, label, value }, i) => (
+                { Icon: MapPin, label: 'Address',         content: <span>National Park East Gate Rd, Nairobi, Kenya</span> },
+                { Icon: Phone, label: 'Phone / WhatsApp', content: <span>+254 715 296324 / +254 713 971 394</span> },
+                { Icon: Mail,  label: 'Email',            content: (
+                  <a
+                    href="mailto:info@containerfabricators.co.ke"
+                    className="text-white hover:text-rust transition-colors"
+                  >
+                    info@containerfabricators.co.ke
+                  </a>
+                )},
+              ].map(({ Icon, label, content }, i) => (
                 <div key={label} className={`reveal reveal-delay-${i + 1} flex gap-4 items-start`}>
                   <div className="w-10 h-10 bg-rust/20 border border-rust/30 flex items-center justify-center shrink-0">
                     <Icon className="w-5 h-5 text-rust" />
@@ -106,7 +113,7 @@ export default function ContactForm() {
                     <div className="font-barlow font-600 text-xs uppercase tracking-widest text-gray-400 mb-1">
                       {label}
                     </div>
-                    <div className="text-white text-sm">{value}</div>
+                    <div className="text-white text-sm">{content}</div>
                   </div>
                 </div>
               ))}

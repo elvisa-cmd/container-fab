@@ -71,7 +71,13 @@ export default function Footer() {
             </Link>
           </p>
           <p className="text-gray-600 text-xs">
-            National Park East Gate Rd, Nairobi, Kenya · +254 715 296324
+            National Park East Gate Rd, Nairobi, Kenya · +254 715 296324 ·{' '}
+            <a
+              href="mailto:info@containerfabricators.co.ke"
+              className="hover:text-gray-400 transition-colors"
+            >
+              info@containerfabricators.co.ke
+            </a>
           </p>
         </div>
       </div>
