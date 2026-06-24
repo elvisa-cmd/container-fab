@@ -121,7 +121,7 @@ export default function CustomersEditorPage() {
     if (panel === 'add') {
       const maxOrd = customers.reduce((m, c) => Math.max(m, c.order), 0)
       updated = [...customers, {
-        id:       Date.now().toString(),
+        id:       crypto.randomUUID(),
         order:    maxOrd + 1,
         name:     form.name.trim(),
         logo:     form.logo ?? '',
