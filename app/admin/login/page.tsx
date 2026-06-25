@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { Eye, EyeOff, AlertCircle } from 'lucide-react'
-import Logo from '@/components/public/Logo'
 
 export default function AdminLoginPage() {
   const router = useRouter()
@@ -42,7 +42,15 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="flex flex-col items-center mb-10">
-          <Logo variant="icon" className="h-20 w-20 mb-4" />
+          <div className="bg-white rounded-md px-3 py-2 mb-4">
+            <Image
+              src="/logo.jpeg"
+              alt="Container Fabricators Kenya"
+              width={200}
+              height={60}
+              className="object-contain"
+            />
+          </div>
           <h1 className="font-barlow font-800 text-2xl text-white uppercase tracking-widest">
             Admin Portal
           </h1>

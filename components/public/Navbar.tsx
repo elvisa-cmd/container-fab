@@ -1,10 +1,10 @@
-﻿'use client'
+'use client'
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Menu, X, Lock } from 'lucide-react'
-import Logo from './Logo'
 
 const navLinks = [
   { label: 'About',    href: '#about' },
@@ -35,8 +35,17 @@ export default function Navbar() {
       <nav aria-label="Main navigation">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" aria-label="Container Fabricators Kenya â€” home" className="flex items-center shrink-0">
-            <Logo variant="navbar" className="h-10 w-auto" />
+          <Link href="/" aria-label="Container Fabricators Kenya - home" className="flex items-center shrink-0">
+            <div className="bg-white rounded-md px-2 py-1">
+              <Image
+                src="/logo.jpeg"
+                alt="Container Fabricators Kenya"
+                width={200}
+                height={60}
+                className="object-contain"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Desktop links */}
@@ -57,7 +66,7 @@ export default function Navbar() {
               Get a Quote
             </a>
 
-            {/* Discreet admin access â€” desktop only */}
+            {/* Discreet admin access - desktop only */}
             <button
               onClick={() => router.push('/admin')}
               title="Admin Panel"
@@ -105,4 +114,3 @@ export default function Navbar() {
     </header>
   )
 }
-
