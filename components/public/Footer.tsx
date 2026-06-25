@@ -11,13 +11,13 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
           {/* Logo */}
           <Link href="/" className="shrink-0">
-            <div className="bg-white rounded-md px-2 py-1">
+            <div style={{ display: 'flex', alignItems: 'center', height: '54px' }}>
               <Image
                 src="/logo.jpeg"
                 alt="Container Fabricators Kenya"
                 width={180}
                 height={54}
-                className="object-contain"
+                style={{ objectFit: 'contain', mixBlendMode: 'screen', height: '54px', width: 'auto' }}
               />
             </div>
           </Link>

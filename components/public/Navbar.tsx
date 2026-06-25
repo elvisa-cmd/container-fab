@@ -36,13 +36,13 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" aria-label="Container Fabricators Kenya - home" className="flex items-center shrink-0">
-            <div className="bg-white rounded-md px-2 py-1">
+            <div style={{ display: 'flex', alignItems: 'center', height: '48px' }}>
               <Image
                 src="/logo.jpeg"
                 alt="Container Fabricators Kenya"
-                width={200}
-                height={60}
-                className="object-contain"
+                width={180}
+                height={48}
+                style={{ objectFit: 'contain', mixBlendMode: 'screen', height: '48px', width: 'auto' }}
                 priority
               />
             </div>
