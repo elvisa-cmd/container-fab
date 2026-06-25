@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { Facebook, Instagram } from 'lucide-react'
 
 export default function Footer() {
@@ -11,15 +10,11 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
           {/* Logo */}
           <Link href="/" className="shrink-0">
-            <div style={{ display: 'flex', alignItems: 'center', height: '54px' }}>
-              <Image
-                src="/logo.jpeg"
-                alt="Container Fabricators Kenya"
-                width={180}
-                height={54}
-                style={{ objectFit: 'contain', mixBlendMode: 'screen', height: '54px', width: 'auto' }}
-              />
-            </div>
+            <img
+              src="/logo.jpeg"
+              alt="Container Fabricators Kenya"
+              style={{ height: '52px', width: 'auto', objectFit: 'contain', mixBlendMode: 'screen', display: 'block' }}
+            />
           </Link>
 
           {/* Nav links */}

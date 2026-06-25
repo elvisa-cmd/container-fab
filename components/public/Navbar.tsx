@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Menu, X, Lock } from 'lucide-react'
 
@@ -36,16 +35,11 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" aria-label="Container Fabricators Kenya - home" className="flex items-center shrink-0">
-            <div style={{ display: 'flex', alignItems: 'center', height: '48px' }}>
-              <Image
-                src="/logo.jpeg"
-                alt="Container Fabricators Kenya"
-                width={180}
-                height={48}
-                style={{ objectFit: 'contain', mixBlendMode: 'screen', height: '48px', width: 'auto' }}
-                priority
-              />
-            </div>
+            <img
+              src="/logo.jpeg"
+              alt="Container Fabricators Kenya"
+              style={{ height: '52px', width: 'auto', objectFit: 'contain', mixBlendMode: 'screen', display: 'block' }}
+            />
           </Link>
 
           {/* Desktop links */}
