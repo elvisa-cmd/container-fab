@@ -35,11 +35,13 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" aria-label="Container Fabricators Kenya - home" className="flex items-center shrink-0">
-            <img
-              src="/logo.jpeg"
-              alt="Container Fabricators Kenya"
-              style={{ height: '52px', width: 'auto', objectFit: 'contain', mixBlendMode: 'screen', display: 'block' }}
-            />
+            <div style={{ backgroundColor: '#1A1F2E', padding: '4px 8px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center' }}>
+              <img
+                src="/logo.jpeg"
+                alt="Container Fabricators Kenya"
+                style={{ height: '48px', width: 'auto', objectFit: 'contain', display: 'block', mixBlendMode: 'multiply' }}
+              />
+            </div>
           </Link>
 
           {/* Desktop links */}

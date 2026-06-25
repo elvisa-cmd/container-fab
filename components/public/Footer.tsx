@@ -10,11 +10,13 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
           {/* Logo */}
           <Link href="/" className="shrink-0">
-            <img
-              src="/logo.jpeg"
-              alt="Container Fabricators Kenya"
-              style={{ height: '52px', width: 'auto', objectFit: 'contain', mixBlendMode: 'screen', display: 'block' }}
-            />
+            <div style={{ backgroundColor: '#111620', padding: '4px 8px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center' }}>
+              <img
+                src="/logo.jpeg"
+                alt="Container Fabricators Kenya"
+                style={{ height: '48px', width: 'auto', objectFit: 'contain', display: 'block', mixBlendMode: 'multiply' }}
+              />
+            </div>
           </Link>
 
           {/* Nav links */}
