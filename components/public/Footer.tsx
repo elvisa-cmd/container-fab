@@ -11,9 +11,9 @@ export default function Footer() {
           {/* Logo */}
           <Link href="/" className="shrink-0">
             <img
-              src="/logo.jpeg"
+              src="/logo.png"
               alt="Container Fabricators Kenya"
-              style={{ height: '50px', width: 'auto', objectFit: 'contain', display: 'block', mixBlendMode: 'screen' }}
+              style={{ height: '50px', width: 'auto', objectFit: 'contain', display: 'block' }}
             />
           </Link>
 

@@ -36,9 +36,9 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" aria-label="Container Fabricators Kenya - home" className="flex items-center shrink-0">
             <img
-              src="/logo.jpeg"
+              src="/logo.png"
               alt="Container Fabricators Kenya"
-              style={{ height: '50px', width: 'auto', objectFit: 'contain', display: 'block', mixBlendMode: 'screen' }}
+              style={{ height: '50px', width: 'auto', objectFit: 'contain', display: 'block' }}
             />
           </Link>
 
