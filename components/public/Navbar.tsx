@@ -2,18 +2,20 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { Menu, X, Lock } from 'lucide-react'
 
 const navLinks = [
-  { label: 'About',    href: '#about' },
-  { label: 'Services', href: '#services' },
+  { label: 'Home',     href: '/' },
+  { label: 'About',    href: '/#about' },
+  { label: 'Services', href: '/#services' },
   { label: 'Projects', href: '/projects' },
-  { label: 'Contact',  href: '#contact' },
+  { label: 'Contact',  href: '/#contact' },
 ]
 
 export default function Navbar() {
-  const router = useRouter()
+  const router   = useRouter()
+  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [open,     setOpen]     = useState(false)
 
@@ -22,6 +24,23 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const handleNavClick = (e: React.MouseEvent, href: string) => {
+    if (href.startsWith('/#')) {
+      e.preventDefault()
+      const section = href.slice(2)
+      if (pathname === '/') {
+        document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' })
+      } else {
+        router.push('/')
+        setTimeout(() => {
+          document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' })
+        }, 500)
+      }
+    }
+  }
+
+  const linkClass = 'font-barlow font-600 text-sm uppercase tracking-widest text-gray-300 hover:text-white transition-colors'
 
   return (
     <header
@@ -44,23 +63,31 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                className="font-barlow font-600 text-sm uppercase tracking-widest text-gray-300 hover:text-white transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
+            {navLinks.map((l) =>
+              l.href.startsWith('/#') ? (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  onClick={(e) => handleNavClick(e, l.href)}
+                  className={linkClass}
+                >
+                  {l.label}
+                </a>
+              ) : (
+                <Link key={l.label} href={l.href} className={linkClass}>
+                  {l.label}
+                </Link>
+              )
+            )}
             <a
-              href="#contact"
+              href="/#contact"
+              onClick={(e) => handleNavClick(e, '/#contact')}
               className="font-barlow font-700 text-sm uppercase tracking-widest bg-rust text-white px-5 py-2 hover:bg-rust-lt transition-colors"
             >
               Get a Quote
             </a>
 
-            {/* Discreet admin access - desktop only */}
+            {/* Discreet admin access */}
             <button
               onClick={() => router.push('/admin')}
               title="Admin Panel"
@@ -85,19 +112,30 @@ export default function Navbar() {
         {/* Mobile drawer */}
         {open && (
           <div className="md:hidden bg-steel border-t border-white/10 px-6 pb-6 flex flex-col gap-4">
-            {navLinks.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="font-barlow font-600 text-sm uppercase tracking-widest text-gray-300 hover:text-white transition-colors py-2 border-b border-white/10"
-              >
-                {l.label}
-              </a>
-            ))}
+            {navLinks.map((l) =>
+              l.href.startsWith('/#') ? (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  onClick={(e) => { handleNavClick(e, l.href); setOpen(false) }}
+                  className="font-barlow font-600 text-sm uppercase tracking-widest text-gray-300 hover:text-white transition-colors py-2 border-b border-white/10"
+                >
+                  {l.label}
+                </a>
+              ) : (
+                <Link
+                  key={l.label}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="font-barlow font-600 text-sm uppercase tracking-widest text-gray-300 hover:text-white transition-colors py-2 border-b border-white/10"
+                >
+                  {l.label}
+                </Link>
+              )
+            )}
             <a
-              href="#contact"
-              onClick={() => setOpen(false)}
+              href="/#contact"
+              onClick={(e) => { handleNavClick(e, '/#contact'); setOpen(false) }}
               className="font-barlow font-700 text-sm uppercase tracking-widest bg-rust text-white px-5 py-3 text-center hover:bg-rust-lt transition-colors mt-2"
             >
               Get a Quote
