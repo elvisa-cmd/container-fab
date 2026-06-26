@@ -18,7 +18,10 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://containerfabricators.co.ke'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    'https://container-fab-pj7s-38xamjt4p-ochiengelvo3-6813s-projects.vercel.app'
+  ),
   title: {
     default: 'Container Fabricators Kenya | Shipping Container Solutions Nairobi',
     template: '%s | Container Fabricators Kenya',
@@ -103,6 +106,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${barlowCondensed.variable} ${inter.variable}`}>
+      <head>
+        <meta name="google-site-verification" content="QEqFMy3_2FszUD" />
+      </head>
       <body>
         <PageTracker />
         {children}
