@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'add-your-google-search-console-code-here',
+    google: 'QEqFMy3_2FszUD',
   },
   alternates: {
     canonical: 'https://containerfabricators.co.ke',
